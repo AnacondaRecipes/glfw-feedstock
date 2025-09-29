@@ -1,12 +1,13 @@
-{% set version = "3.5.0" %}
+{% set name = "glfw" %}
+{% set version = "3.4" %}
 
 package:
-  name: glfw
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/glfw/glfw/archive/{{ version }}.tar.gz
-  sha256: 1abba4007c81bb3c21dad0f1cfff65cf71a5f92d1421016ce7eb236c7458ba9f
+  url: https://github.com/{{ name }}/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
+  sha256: c038d34200234d071fae9345bc455e4a8f2f544ab60150765d7704e08f3dac01
   patches:
     # Mostly taken from
     # https://github.com/glfw/glfw/issues/2139
@@ -21,22 +22,20 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
-    - {{ stdlib("c") }}
     - cmake
-    - m2-patch               # [win]
-    - pkg-config             # [unix]
-    - ninja                  # [win]
-    - make                   # [unix]
+    - pkg-config  # [unix]
+    - ninja       # [win]
+    - make        # [unix]
   host:
-    - xorg-xorgproto         # [linux]
-    - xorg-libx11            # [linux]
-    - xorg-libxrandr         # [linux]
-    - xorg-libxinerama       # [linux]
-    - xorg-libxcursor        # [linux]
-    - xorg-libxi             # [linux]
-    - libxkbcommon           # [linux]
-    - wayland                # [linux]
+    - xorg-libx11 {{ xorg_libx11 }}           # [linux]
+    - xorg-libxrandr {{ xorg_libxrandr }}     # [linux]
+    - xorg-libxinerama {{ xorg_libxinerama }} # [linux]
+    - xorg-libxcursor {{ xorg_libxcursor }}   # [linux]
+    - xorg-libxi {{ xorg_libxi }}             # [linux]
+    - libxkbcommon {{ libxkbcommon }}         # [linux]
+    - wayland {{ wayland }}                   # [linux]
 
 test:
   commands:
@@ -47,20 +46,14 @@ test:
 about:
   home: https://www.glfw.org/
   license: Zlib
+  license_family: OTHER
   license_file: LICENSE.md
   summary: Open Source, multi-platform library for OpenGL, OpenGL ES and Vulkan application development.
-
-  # The remaining entries in this section are optional, but recommended
   description: |
     GLFW is an Open Source, multi-platform library for OpenGL, OpenGL ES and
     Vulkan application development. It provides a simple,
     platform-independent API for creating windows, contexts and surfaces,
     reading input, handling events, etc.
-
-    GLFW natively supports Windows, macOS and Linux and other Unix-like
-    systems.  An experimental implementation for the Wayland protocol is
-    available but not yet officially supported.
-
   doc_url: https://www.glfw.org/documentation.html
   dev_url: https://github.com/glfw/glfw
 
