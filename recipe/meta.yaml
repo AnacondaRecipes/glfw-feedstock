@@ -1,5 +1,5 @@
 {% set name = "glfw" %}
-{% set version = "3.4" %}
+{% set version = "3.5.1" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/{{ name }}/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
-  sha256: c038d34200234d071fae9345bc455e4a8f2f544ab60150765d7704e08f3dac01
+  sha256: 5234f4f29473e9a06bc7847d8371858dd135d38466eeeaa652fdc9f8f9ff0c20
   patches:
     # Mostly taken from
     # https://github.com/glfw/glfw/issues/2139
@@ -26,22 +26,22 @@ requirements:
     - {{ compiler('c') }}
     - cmake
     - pkg-config  # [unix]
-    - ninja       # [win]
-    - make        # [unix]
+    - ninja  # [win]
+    - make  # [unix]
   host:
-    - xorg-libx11 {{ xorg_libx11 }}           # [linux]
-    - xorg-libxrandr {{ xorg_libxrandr }}     # [linux]
-    - xorg-libxinerama {{ xorg_libxinerama }} # [linux]
-    - xorg-libxcursor {{ xorg_libxcursor }}   # [linux]
-    - xorg-libxi {{ xorg_libxi }}             # [linux]
-    - libxkbcommon {{ libxkbcommon }}         # [linux]
-    - wayland {{ wayland }}                   # [linux]
+    - xorg-libx11 {{ xorg_libx11 }}  # [linux]
+    - xorg-libxrandr {{ xorg_libxrandr }}  # [linux]
+    - xorg-libxinerama {{ xorg_libxinerama }}  # [linux]
+    - xorg-libxcursor {{ xorg_libxcursor }}  # [linux]
+    - xorg-libxi {{ xorg_libxi }}  # [linux]
+    - libxkbcommon {{ libxkbcommon }}  # [linux]
+    - wayland {{ wayland }}  # [linux]
 
 test:
   commands:
-    - test -f $PREFIX/lib/libglfw${SHLIB_EXT}                # [unix]
+    - test -f $PREFIX/lib/libglfw${SHLIB_EXT}  # [unix]
     - if not exist %PREFIX%/Library/lib/glfw3dll.lib exit 1  # [win]
-    - if not exist %PREFIX%/Library/bin/glfw3.dll exit 1     # [win]
+    - if not exist %PREFIX%/Library/bin/glfw3.dll exit 1  # [win]
 
 about:
   home: https://www.glfw.org/
