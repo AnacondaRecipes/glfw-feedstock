@@ -26,7 +26,7 @@ requirements:
     - {{ compiler('c') }}
     - cmake
     - pkg-config  # [unix]
-    - ninja  # [win]
+    - ninja-base  # [win]
     - make  # [unix]
   host:
     - xorg-libx11 ==1.8.12  # [linux]
