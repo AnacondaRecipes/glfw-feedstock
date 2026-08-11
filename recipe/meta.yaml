@@ -29,11 +29,11 @@ requirements:
     - ninja  # [win]
     - make  # [unix]
   host:
-    - xorg-libx11 {{ xorg_libx11 }}  # [linux]
-    - xorg-libxrandr {{ xorg_libxrandr }}  # [linux]
-    - xorg-libxinerama {{ xorg_libxinerama }}  # [linux]
-    - xorg-libxcursor {{ xorg_libxcursor }}  # [linux]
-    - xorg-libxi {{ xorg_libxi }}  # [linux]
+    - xorg-libx11 ==1.8.12  # [linux]
+    - xorg-libxrandr ==1.5.4  # [linux]
+    - xorg-libxinerama ==1.1.5  # [linux]
+    - xorg-libxcursor ==1.2.3  # [linux]
+    - xorg-libxi ==1.8.2  # [linux]
     - libxkbcommon {{ libxkbcommon }}  # [linux]
     - wayland {{ wayland }}  # [linux]
 
